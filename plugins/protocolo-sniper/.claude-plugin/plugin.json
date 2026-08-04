@@ -1,0 +1,8 @@
+{
+  "name": "protocolo-sniper",
+  "description": "Modo de trabalho para sistemas em produção com utilizadores reais: acertar à primeira, verificar na ground truth, commits cirúrgicos",
+  "author": {
+    "name": "Vitor Hugo Herbst",
+    "email": "vitor@v2h.com.br"
+  }
+}
