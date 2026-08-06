@@ -15,6 +15,10 @@ Dentro do Claude Code, em qualquer projeto:
 /plugin install protocolo-sniper@v2h
 ```
 
+```
+/plugin install engineering@v2h
+```
+
 Aparece um ecrã a pedir o âmbito da instalação — confirma com Enter. Depois:
 
 ```
@@ -31,6 +35,14 @@ E está. Não é preciso clonar nada nem copiar ficheiros.
 
 Ou simplesmente escrever **"usa o protocolo sniper"** — o Claude reconhece pela
 descrição e carrega as regras sozinho quando o trabalho é num sistema em produção.
+
+```
+/engineering:review
+```
+
+Aceita um número ou URL de pull request. Sem argumento, revê o PR da branch atual;
+se não houver, revê o diff local. Também arranca sozinho com **"revê este PR"** ou
+**"vê se isto tem bugs antes de publicar"**.
 
 ## Atualizações
 
@@ -50,6 +62,7 @@ Para forçar a atualização na hora:
 | Plugin | O que faz |
 |---|---|
 | `protocolo-sniper` | Modo de trabalho para alterações em sistemas com utilizadores reais: ler antes de escrever, verificar na ground truth, commits cirúrgicos, resumo por-pessoa |
+| `engineering` | `/engineering:review` — revisão de código multi-agente. Encontra com 8 agentes em paralelo, duvida de cada achado com um score 0–100 e só reporta acima de 80. Inclui eixos nossos: RLS e migrações Supabase, env vars, mock em produção, docs por atualizar |
 
 ---
 

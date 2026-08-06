@@ -20,7 +20,8 @@ No ficheiro `.claude/settings.json` de **cada projeto** (`bigone-ops-hub`,
     }
   },
   "enabledPlugins": {
-    "protocolo-sniper@v2h": true
+    "protocolo-sniper@v2h": true,
+    "engineering@v2h": true
   }
 }
 ```

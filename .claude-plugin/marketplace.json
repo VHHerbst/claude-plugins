@@ -12,6 +12,11 @@
       "name": "protocolo-sniper",
       "source": "./plugins/protocolo-sniper",
       "description": "Modo de trabalho para sistemas em produção com utilizadores reais: acertar à primeira, verificar na ground truth, commits cirúrgicos"
+    },
+    {
+      "name": "engineering",
+      "source": "./plugins/engineering",
+      "description": "Práticas de engenharia da V2H para Claude Code: revisão de código multi-agente com filtro de confiança"
     }
   ]
 }
