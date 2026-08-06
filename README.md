@@ -11,8 +11,14 @@ Dentro do Claude Code, em qualquer projeto:
 /plugin marketplace add VHHerbst/claude-plugins
 ```
 
+Depois instala **só o que precisas**:
+
 ```
 /plugin install ops@v2h
+```
+
+```
+/plugin install design@v2h
 ```
 
 Aparece um ecrã a pedir o âmbito da instalação — confirma com Enter. Depois:
@@ -25,7 +31,9 @@ E está. Não é preciso clonar nada nem copiar ficheiros.
 
 ## Os comandos
 
-O plugin `ops` são **operações**: cada comando é um momento diferente do trabalho.
+### `ops` — engenharia
+
+Cada comando é um momento diferente do trabalho.
 
 | Comando | Quando |
 |---|---|
@@ -34,10 +42,19 @@ O plugin `ops` são **operações**: cada comando é um momento diferente do tra
 | `/ops:triage` | **Quando o projeto está lento de mexer.** Audita a base de código e ordena a dívida técnica por quanto custa de facto |
 | `/ops:doctrine` | **Depois de uma decisão grande.** Escreve o ADR, com as alternativas rejeitadas e o gatilho que reabre a discussão |
 
+### `design` — design e UX
+
+| Comando | Quando |
+|---|---|
+| `/design:research` | **Antes de desenhar.** Transforma entrevistas e testes em achados, separando o que foi dito do que foi observado |
+| `/design:critique` | **Com o desenho feito.** Crítica ordenada por quanto atrapalha quem usa — e as preferências marcadas como tal |
+| `/design:copy` | **O texto do ecrã.** Botões, erros, estados vazios, confirmações |
+| `/design:accessibility` | **Antes de entregar.** Auditoria WCAG feita por tarefa, não por checklist |
+| `/design:handoff` | **Para o dev.** Estados, casos limite e o que reutilizar do design system |
+
 Não é preciso decorar. Cada skill carrega-se sozinha quando o pedido bate com a
 descrição — "revê este PR" chama o `recon`, "isto está em produção" chama o
-`sniper`, "o que devíamos refatorar" chama a `triage`, "documenta esta decisão"
-chama a `doctrine`.
+`sniper`, "o que achas deste ecrã" chama a `critique`, "handoff" chama o `handoff`.
 
 ## Atualizações
 
@@ -54,10 +71,15 @@ Para forçar a atualização na hora:
 
 ## Plugins disponíveis
 
-| Plugin | O que faz |
-|---|---|
-| `ops` | Operações de engenharia: `recon`, `sniper`, `triage`, `doctrine` |
-| `protocolo-sniper` | **Descontinuado.** Redireciona para `ops@v2h`. Será removido |
+Cada plugin é uma caixa de ferramentas própria. **Instala só os que fazem sentido
+para o teu trabalho** — o designer não precisa do `sniper`, o programador não precisa
+do `handoff`.
+
+| Plugin | Para quem | O que traz |
+|---|---|---|
+| `ops` | quem constrói e mantém sites e apps | `recon`, `sniper`, `triage`, `doctrine` |
+| `design` | quem desenha ecrãs e fluxos | `research`, `critique`, `copy`, `accessibility`, `handoff` |
+| `protocolo-sniper` | — | **Descontinuado.** Redireciona para `ops@v2h`. Será removido |
 
 ### Vieste do `protocolo-sniper`?
 
@@ -74,6 +96,24 @@ As regras não mudaram, mudou o sítio: agora é `/ops:sniper`. Uma vez só:
 ---
 
 ## Notas de manutenção (para o Vitor)
+
+### Um plugin por caixa de ferramentas, nunca um plugin para tudo
+
+Instalar é escolher. Se meteres engenharia e design no mesmo plugin, o designer leva
+o `sniper` à boleia e o programador leva o `handoff` — e ninguém percebe o que é
+para si. **Um plugin serve uma pessoa a fazer um tipo de trabalho.**
+
+Há duas famílias, e a diferença entre elas decide onde uma skill nova deve ir:
+
+- **Disciplinas** (`ops`, `design`) — uma forma de trabalhar que serve em qualquer
+  projeto e nunca acaba. As skills disparam sozinhas pela descrição.
+- **Construções** (produtos guiados) — constroem uma coisa específica, do princípio
+  ao fim, e consomem-se quando terminam. São uma sequência, e precisam de saber em
+  que passo vais — coisa que uma skill, sozinha, não sabe.
+
+Quando uma construção repetir a segunda vez o mesmo trabalho de outra, **aí** é que
+se extrai a disciplina comum. Nunca antes: abstrair no primeiro caso é adivinhar a
+partir de um exemplo só.
 
 ### Arquitetura de nomes
 

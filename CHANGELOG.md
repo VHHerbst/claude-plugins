@@ -6,6 +6,29 @@ a regra colar.
 
 ---
 
+## 2026-08-06 — plugin `design`
+
+Cinco comandos que cobrem o ciclo todo, de pesquisar a entregar ao dev:
+
+- `/design:research` — síntese de pesquisa. Separa **o que foi dito**, **o que foi
+  observado** e **o que é interpretação tua**; um achado só é padrão com 3 sessões
+  independentes, e nada de percentagens com amostra pequena.
+- `/design:critique` — crítica ordenada por dano (bloqueia / atrasa / preferência),
+  com as preferências à parte e sem peso. Percorre a tarefa, não o ecrã.
+- `/design:copy` — texto de interface. Botão diz o que faz, erro diz o que fazer a
+  seguir, estado vazio ensina. Fixa PT-PT ou PT-BR e não mistura.
+- `/design:accessibility` — auditoria WCAG por tarefa: completar o fluxo só com
+  teclado, sem ver, e com dificuldade motora. Diz o que as ferramentas automáticas
+  não apanham, que é a maior parte.
+- `/design:handoff` — lê o design system **antes** de especificar, sete estados por
+  componente, e a secção "o que acontece quando…" que falta em quase todos.
+
+Com isto o catálogo passa a ter **um plugin por caixa de ferramentas**: o designer
+instala `design`, o programador instala `ops`, e ninguém carrega comandos que não são
+para si.
+
+---
+
 ## 2026-08-06 — plugin `ops` e arquitetura de nomes
 
 O catálogo passou a ter uma língua só. Tudo o que é engenharia vive no plugin `ops`,

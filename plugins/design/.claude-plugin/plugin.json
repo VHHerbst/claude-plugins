@@ -1,0 +1,9 @@
+{
+  "name": "design",
+  "description": "Design e UX de web e app: crítica estruturada, handoff para dev, auditoria de acessibilidade, UX copy e síntese de pesquisa com utilizadores",
+  "author": {
+    "name": "Vitor Hugo Herbst",
+    "email": "vitor@v2h.com.br"
+  },
+  "homepage": "https://github.com/VHHerbst/claude-plugins"
+}
