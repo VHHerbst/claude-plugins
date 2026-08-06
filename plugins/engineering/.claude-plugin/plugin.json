@@ -1,8 +1,0 @@
-{
-  "name": "engineering",
-  "description": "Práticas de engenharia da V2H para Claude Code: revisão de código multi-agente com filtro de confiança",
-  "author": {
-    "name": "Vitor Hugo Herbst",
-    "email": "vitor@v2h.com.br"
-  }
-}

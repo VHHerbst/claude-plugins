@@ -1,12 +1,16 @@
 ---
-name: review
-description: Revisão de código multi-agente com filtro de confiança, para pull requests do GitHub ou para o diff local. Usa quando alguém pedir "revê este PR", "revisão de código", "code review", "vê se isto tem bugs antes de publicar", ou passar um número/URL de pull request. Cobre também os eixos próprios da V2H — RLS e migrações Supabase, env vars obrigatórias, dados fictícios em produção e documentação por atualizar.
+name: recon
+description: Reconhecimento de terreno antes de avançar — revisão de código multi-agente com filtro de confiança, para pull requests do GitHub ou para o diff local. Usa quando alguém pedir "revê este PR", "revisão de código", "code review", "faz recon", "vê se isto tem bugs antes de publicar", ou passar um número/URL de pull request. Cobre também os eixos próprios da V2H — RLS e migrações Supabase, env vars obrigatórias, dados fictícios em produção e documentação por atualizar.
 ---
 
-# Engineering Review
+# Recon
+
+Reconhecimento é ir ver o terreno **antes** de avançar. Não se dispara nada aqui: o
+resultado é um relatório de quem observou, para quem decide.
 
 Uma revisão só vale se **o que reportas for verdade**. Vinte observações plausíveis
-valem menos que três confirmadas: quem lê deixa de confiar e passa a ignorar tudo.
+valem menos que três confirmadas: quem lê deixa de confiar e passa a ignorar tudo —
+e a partir daí o recon deixou de servir para o que existe.
 
 Por isso esta revisão tem duas metades — **encontrar** e **duvidar**. A segunda é a
 que interessa.
@@ -181,6 +185,7 @@ E fecha com a linha que interessa a quem vai publicar:
 
 Se alguma resposta for "não", ainda não está pronta.
 
-Quando a revisão apanhar algo numa mudança que vai para um sistema em uso, o passo
-seguinte é o `protocolo-sniper` — a revisão diz o que está mal, o protocolo diz como
-se corrige sem partir nada.
+Quando o recon apanhar algo numa mudança que vai para um sistema em uso, o passo
+seguinte é o `/ops:sniper` — o recon diz o que está mal, o sniper diz como se corrige
+sem partir nada. Se o que apanhaste for antigo e não for desta mudança, não o
+reportes aqui: vai para o `/ops:triage`.

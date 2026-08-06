@@ -9,14 +9,14 @@
   },
   "plugins": [
     {
-      "name": "protocolo-sniper",
-      "source": "./plugins/protocolo-sniper",
-      "description": "Modo de trabalho para sistemas em produção com utilizadores reais: acertar à primeira, verificar na ground truth, commits cirúrgicos"
+      "name": "ops",
+      "source": "./plugins/ops",
+      "description": "Operações de engenharia da V2H: reconhecimento antes de avançar, tiro cirúrgico em produção, triagem de dívida técnica e doutrina escrita"
     },
     {
-      "name": "engineering",
-      "source": "./plugins/engineering",
-      "description": "Práticas de engenharia da V2H para Claude Code: revisão de código multi-agente com filtro de confiança"
+      "name": "protocolo-sniper",
+      "source": "./plugins/protocolo-sniper",
+      "description": "DESCONTINUADO — o Protocolo Sniper mudou-se para o plugin ops. Instala ops@v2h e usa /ops:sniper"
     }
   ]
 }
