@@ -21,6 +21,10 @@ Depois instala **só o que precisas**:
 /plugin install design@v2h
 ```
 
+```
+/plugin install chatbot@v2h
+```
+
 Aparece um ecrã a pedir o âmbito da instalação — confirma com Enter. Depois:
 
 ```
@@ -52,9 +56,25 @@ Cada comando é um momento diferente do trabalho.
 | `/design:accessibility` | **Antes de entregar.** Auditoria WCAG feita por tarefa, não por checklist |
 | `/design:handoff` | **Para o dev.** Estados, casos limite e o que reutilizar do design system |
 
-Não é preciso decorar. Cada skill carrega-se sozinha quando o pedido bate com a
+### `chatbot` — construir a tua plataforma de conversas
+
+Este é diferente dos outros: **é uma sequência**, não uma caixa de ferramentas. Corre
+pela ordem, do princípio ao fim.
+
+| Comando | O que constrói |
+|---|---|
+| `/chatbot:start` | O plano. Corta o âmbito antes de haver código — é o que decide se o projeto acaba |
+| `/chatbot:schema` | O modelo de dados. Identidade do contacto e isolamento entre clientes, à primeira |
+| `/chatbot:channel` | O canal a sério. Uma pessoa escreve do telemóvel e aparece na tua tabela |
+| `/chatbot:engine` | O motor de fluxos: condições, esperas, recolha de respostas, passar para humano |
+| `/chatbot:builder` | O ecrã onde uma pessoa sem código monta os fluxos, e a caixa de entrada |
+| `/chatbot:dispatch` | Campanhas — com opt-out, ritmo e travões contra banimento |
+| `/chatbot:launch` | Pôr no ar e saber que partiu **antes** do cliente ligar |
+
+Não é preciso decorar nada. Cada skill carrega-se sozinha quando o pedido bate com a
 descrição — "revê este PR" chama o `recon`, "isto está em produção" chama o
-`sniper`, "o que achas deste ecrã" chama a `critique`, "handoff" chama o `handoff`.
+`sniper`, "o que achas deste ecrã" chama a `critique`, "ligar o WhatsApp" chama o
+`channel`.
 
 ## Atualizações
 
@@ -79,6 +99,7 @@ do `handoff`.
 |---|---|---|
 | `ops` | quem constrói e mantém sites e apps | `recon`, `sniper`, `triage`, `doctrine` |
 | `design` | quem desenha ecrãs e fluxos | `research`, `critique`, `copy`, `accessibility`, `handoff` |
+| `chatbot` | quem quer a sua própria plataforma de automação de conversas | `start`, `schema`, `channel`, `engine`, `builder`, `dispatch`, `launch` |
 | `protocolo-sniper` | — | **Descontinuado.** Redireciona para `ops@v2h`. Será removido |
 
 ### Vieste do `protocolo-sniper`?

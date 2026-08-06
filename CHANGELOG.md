@@ -6,6 +6,31 @@ a regra colar.
 
 ---
 
+## 2026-08-06 — plugin `chatbot`, a primeira construção guiada
+
+Sete comandos que levam alguém de zero a uma plataforma própria de automação de
+conversas — `start`, `schema`, `channel`, `engine`, `builder`, `dispatch`, `launch`.
+
+É o primeiro plugin de outra família: os outros são **disciplinas** (servem sempre,
+em qualquer projeto), este é uma **construção** (tem princípio, meio e fim). A ordem
+dos comandos é a parte importante, e existe por um motivo — quem desiste destes
+projetos desiste sempre no mesmo sítio, a construir o editor visual de fluxos na
+primeira semana.
+
+Decisões que ficam registadas:
+
+- **Não se chama `manychat`.** É marca de outra empresa; usá-la no nome sugere
+  ligação oficial e vira problema exatamente quando o projeto ganha visibilidade. A
+  promessa vive na descrição, onde é referência descritiva.
+- **O `comms` como disciplina não foi criado**, de propósito. Extrai-se quando um
+  segundo produto repetir o mesmo trabalho — com um exemplo só, a abstração é
+  adivinhação.
+- Os travões do `dispatch` (opt-out imediato, ritmo, paragem por taxa de falhas) não
+  são zelo a mais: o custo do erro ali não é um bug, é o canal de vendas de um
+  cliente.
+
+---
+
 ## 2026-08-06 — plugin `design`
 
 Cinco comandos que cobrem o ciclo todo, de pesquisar a entregar ao dev:

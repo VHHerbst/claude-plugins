@@ -19,6 +19,11 @@
       "description": "Design e UX de web e app: crítica estruturada, handoff para dev, auditoria de acessibilidade, UX copy e síntese de pesquisa com utilizadores"
     },
     {
+      "name": "chatbot",
+      "source": "./plugins/chatbot",
+      "description": "Construção guiada de uma plataforma própria de automação de conversas — o teu próprio ManyChat: canais, motor de fluxos, construtor visual, campanhas e lançamento"
+    },
+    {
       "name": "protocolo-sniper",
       "source": "./plugins/protocolo-sniper",
       "description": "DESCONTINUADO — o Protocolo Sniper mudou-se para o plugin ops. Instala ops@v2h e usa /ops:sniper"
