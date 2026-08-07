@@ -1,8 +1,0 @@
-{
-  "name": "protocolo-sniper",
-  "description": "DESCONTINUADO — o Protocolo Sniper mudou-se para o plugin ops. Instala ops@v2h e usa /ops:sniper",
-  "author": {
-    "name": "Vitor Hugo Herbst",
-    "email": "vitor@v2h.com.br"
-  }
-}

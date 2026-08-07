@@ -14,7 +14,13 @@
       "source": "./plugins/ops",
       "description": "Engenharia: revisão de PR com filtro de confiança, modo de trabalho para sistemas em produção, triagem de dívida técnica e decisões de arquitetura escritas",
       "category": "workflow",
-      "tags": ["code-review", "producao", "divida-tecnica", "adr", "supabase"],
+      "tags": [
+        "code-review",
+        "producao",
+        "divida-tecnica",
+        "adr",
+        "supabase"
+      ],
       "homepage": "https://github.com/VHHerbst/claude-plugins#ops--para-quem-constrói-e-mantém"
     },
     {
@@ -22,7 +28,14 @@
       "source": "./plugins/design",
       "description": "Design e UX de web e app: crítica estruturada, handoff para dev, auditoria de acessibilidade, UX copy e síntese de pesquisa com utilizadores",
       "category": "workflow",
-      "tags": ["design", "ux", "acessibilidade", "wcag", "handoff", "ux-copy"],
+      "tags": [
+        "design",
+        "ux",
+        "acessibilidade",
+        "wcag",
+        "handoff",
+        "ux-copy"
+      ],
       "homepage": "https://github.com/VHHerbst/claude-plugins#design--para-quem-desenha"
     },
     {
@@ -30,13 +43,14 @@
       "source": "./plugins/chatbot",
       "description": "Construção guiada de uma plataforma própria de automação de conversas — o teu próprio ManyChat: canais, motor de fluxos, construtor visual, campanhas e lançamento",
       "category": "workflow",
-      "tags": ["whatsapp", "instagram", "chatbot", "automacao", "supabase"],
+      "tags": [
+        "whatsapp",
+        "instagram",
+        "chatbot",
+        "automacao",
+        "supabase"
+      ],
       "homepage": "https://github.com/VHHerbst/claude-plugins#chatbot--construir-a-tua-própria-plataforma-de-conversas"
-    },
-    {
-      "name": "protocolo-sniper",
-      "source": "./plugins/protocolo-sniper",
-      "description": "DESCONTINUADO — o Protocolo Sniper mudou-se para o plugin ops. Instala ops@v2h e usa /ops:sniper"
     }
   ]
 }

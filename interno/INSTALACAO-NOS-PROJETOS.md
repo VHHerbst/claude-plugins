@@ -29,8 +29,8 @@ No ficheiro `.claude/settings.json` de **cada projeto** (`bigone-ops-hub`,
 > junta só estas duas chaves ao objeto que já lá está.
 
 > Se o projeto ainda tiver `"protocolo-sniper@v2h": true`, **substitui essa linha
-> por `"ops@v2h": true`**. O plugin antigo continua a existir só para redirecionar,
-> e vai ser removido.
+> por `"ops@v2h": true`**. O plugin antigo já não existe no catálogo, e deixado ali
+> dá `plugin-not-found` a quem abrir o projeto.
 
 Commita o ficheiro. Uma vez por projeto, para sempre.
 

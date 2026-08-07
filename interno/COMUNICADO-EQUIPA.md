@@ -41,14 +41,8 @@ Depois `/reload-plugins` e está.
 - Quem desenha tem *"o que achas deste ecrã"*, *"faz o handoff para o dev"* e a
   auditoria de acessibilidade.
 
-**Uma coisa que muda para quem já tinha instalado**
-
-O comando do protocolo mudou de nome: era `/protocolo-sniper:protocolo-sniper`, agora
-é **`/ops:sniper`**. As regras são as mesmas. Corram também:
-
-```
-/plugin uninstall protocolo-sniper@v2h
-```
+**O Protocolo Sniper continua lá**, com as mesmas regras — agora chama-se
+**`/ops:sniper`** e vem dentro do plugin `ops`, ao lado dos outros três.
 
 **As atualizações chegam sozinhas.** Quando eu melhorar alguma coisa, aparece no
 vosso Claude Code sem fazerem nada.

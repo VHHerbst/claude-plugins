@@ -6,6 +6,21 @@ a regra colar.
 
 ---
 
+## 2026-08-06 — catálogo público
+
+Licença de uso escrita: **usar sim, redistribuir não**. Instalar, usar em trabalho
+pago e adaptar a cópia própria é livre; republicar, partilhar versões alteradas ou
+vender não é.
+
+O README passou a ser a montra em vez de documentação interna, e as notas de
+manutenção mudaram-se para o [MANUTENCAO.md](MANUTENCAO.md).
+
+O plugin `protocolo-sniper` **foi removido** do catálogo. Existia só para redirecionar
+quem o tinha instalado, e como ainda ninguém da equipa tinha chegado a usá-lo, o
+catálogo estreia limpo com três plugins.
+
+---
+
 ## 2026-08-06 — plugin `chatbot`, a primeira construção guiada
 
 Sete comandos que levam alguém de zero a uma plataforma própria de automação de
