@@ -2,26 +2,36 @@
   "name": "v2h",
   "owner": {
     "name": "Vitor Hugo Herbst",
-    "email": "vitor@v2h.com.br"
+    "email": "vitor@v2h.com.br",
+    "url": "https://github.com/VHHerbst/claude-plugins"
   },
   "metadata": {
-    "description": "Plugins internos da equipa V2H para Claude Code"
+    "description": "Comandos que fazem o Claude Code duvidar do que encontra, ordenar pelo que custa de facto, e dizer o que ficou por fazer"
   },
   "plugins": [
     {
       "name": "ops",
       "source": "./plugins/ops",
-      "description": "Operações de engenharia da V2H: reconhecimento antes de avançar, tiro cirúrgico em produção, triagem de dívida técnica e doutrina escrita"
+      "description": "Engenharia: revisão de PR com filtro de confiança, modo de trabalho para sistemas em produção, triagem de dívida técnica e decisões de arquitetura escritas",
+      "category": "workflow",
+      "tags": ["code-review", "producao", "divida-tecnica", "adr", "supabase"],
+      "homepage": "https://github.com/VHHerbst/claude-plugins#ops--para-quem-constrói-e-mantém"
     },
     {
       "name": "design",
       "source": "./plugins/design",
-      "description": "Design e UX de web e app: crítica estruturada, handoff para dev, auditoria de acessibilidade, UX copy e síntese de pesquisa com utilizadores"
+      "description": "Design e UX de web e app: crítica estruturada, handoff para dev, auditoria de acessibilidade, UX copy e síntese de pesquisa com utilizadores",
+      "category": "workflow",
+      "tags": ["design", "ux", "acessibilidade", "wcag", "handoff", "ux-copy"],
+      "homepage": "https://github.com/VHHerbst/claude-plugins#design--para-quem-desenha"
     },
     {
       "name": "chatbot",
       "source": "./plugins/chatbot",
-      "description": "Construção guiada de uma plataforma própria de automação de conversas — o teu próprio ManyChat: canais, motor de fluxos, construtor visual, campanhas e lançamento"
+      "description": "Construção guiada de uma plataforma própria de automação de conversas — o teu próprio ManyChat: canais, motor de fluxos, construtor visual, campanhas e lançamento",
+      "category": "workflow",
+      "tags": ["whatsapp", "instagram", "chatbot", "automacao", "supabase"],
+      "homepage": "https://github.com/VHHerbst/claude-plugins#chatbot--construir-a-tua-própria-plataforma-de-conversas"
     },
     {
       "name": "protocolo-sniper",
