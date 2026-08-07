@@ -147,4 +147,18 @@ Regras de nomes, arquitetura do catálogo e o que nunca mexer estão em
 Apanhaste um erro que uma regra nova teria evitado? Abre uma issue. As melhores regras
 nascem sempre de algo que correu mal a sério — não de teoria.
 
+---
+
+## Licença
+
+**Podes usar. Não podes redistribuir.**
+
+Instala, usa no teu trabalho e no dos teus clientes — incluindo trabalho pago — e
+adapta a tua cópia à vontade. O que não podes é republicar isto noutro repositório ou
+marketplace, partilhar versões alteradas, vender, ou incluir em algo vendido.
+
+Queres distribuir? Pede: **vitor@v2h.com.br**
+
+Detalhe completo em [LICENSE](LICENSE).
+
 **Autor:** Vitor Hugo Herbst — [V2H](https://v2h.com.br)
