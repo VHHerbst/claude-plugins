@@ -41,6 +41,7 @@ nada nem copiar ficheiros. As atualizações chegam sozinhas.
 |---|---|
 | `/ops:recon` | **Antes de avançar.** Revisão de um PR ou do diff local |
 | `/ops:sniper` | **Durante.** Alterar um sistema que tem gente a usá-lo agora |
+| `/ops:isolate` | **Quando alguma coisa partiu.** Descobrir a camada culpada antes de abrir um ficheiro |
 | `/ops:triage` | **Quando o projeto está lento de mexer.** Dívida técnica ordenada |
 | `/ops:doctrine` | **Depois de uma decisão grande.** O ADR que evita rediscutir daqui a meses |
 
@@ -52,6 +53,12 @@ achado tenta deitá-lo abaixo** e dá-lhe uma nota de 0 a 100. Só passa acima d
 É o passo que falta na maior parte das revisões automáticas: elas encontram, mas não
 duvidam. Vinte observações plausíveis valem menos que três confirmadas — a partir da
 terceira falsa, quem lê passa a ignorar todas.
+
+**O `isolate` começa por perguntar se há mesmo avaria.** Ausência de atividade não é
+sintoma: "não entraram mensagens hoje" só é problema depois de se saber que devia ter
+havido tráfego. Depois corta o percurso ao meio em vez de o seguir por ordem, e obriga
+a guardar a prova antes de mexer — porque a primeira alteração apaga-a, e há painéis
+onde se escreve a configuração e não se consegue voltar a lê-la.
 
 **O `triage` faz a pergunta que ninguém faz:** *quando é que isto custou tempo a
 alguém nos últimos seis meses — commit, incidente ou entrega atrasada?* Sem resposta,

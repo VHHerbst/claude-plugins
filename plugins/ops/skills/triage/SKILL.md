@@ -68,7 +68,10 @@ Devolve achados com **ficheiro, linha e evidência**.
 - **#5 — Configuração e produção.** Env vars obrigatórias que não existem em todos
   os ambientes, segredos em código, dados fictícios no bundle, feature flags mortas
   há meses, Edge Functions no repo que nunca foram deployadas.
-- **#6 — Documentação desalinhada.** `docs/features/` e `AGENTS.md` que descrevem
+- **#6 — Documentação desalinhada.** Conta aqui o **texto que o próprio sistema
+  mostra**: a mensagem de erro que manda configurar num painel onde a configuração
+  não pega, o nome de uma função que diz um fornecedor e chama outro. Manda a próxima
+  pessoa na direção errada, com confiança. E `docs/features/` e `AGENTS.md` que descrevem
   um comportamento que o código já não tem. Documentação errada é pior que
   documentação nenhuma: manda a próxima pessoa na direção errada com confiança.
 

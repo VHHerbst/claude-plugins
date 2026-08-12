@@ -34,6 +34,13 @@ Escreve o ADR só se as **três** forem verdade:
 Se falha alguma, não é doutrina. É uma nota de implementação — o sítio é o
 `docs/features/` ou um comentário no código. **Diz isso e não escrevas o ADR.**
 
+### Exceção: o que já se tentou e correu mal
+
+Se o que reprovou o teste foi **uma coisa que se tentou e a produção rejeitou**, a
+nota não é "não resultou". Leva o que um ADR leva — a data, o dano concreto, e a
+condição em que valeria a pena tentar outra vez. Sem isso, alguém volta a propor a
+mesma ideia daqui a três meses e ninguém se lembra porque é que saiu.
+
 ## 1. Encontrar onde vive a doutrina
 
 Procura, por esta ordem: `docs/adr/`, `docs/decisions/`, `docs/plans/`, ou o que o

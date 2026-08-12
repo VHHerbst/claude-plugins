@@ -84,6 +84,13 @@ E dá sempre saída: uma palavra que a pessoa escreve para falar com alguém. Um
 sem saída para humano é uma armadilha, e é assim que se perde o cliente que estava
 mesmo a querer comprar.
 
+**Calar por horário não é calar por handoff.** A regra de cima aplica-se a uma
+conversa que alguém assumiu de facto. Calar a automação porque *são horas de
+expediente* não tem ninguém do outro lado — tem a suposição de que alguém está a
+olhar para a caixa de entrada. Numa clínica em produção essa guarda durou um dia:
+um cliente pediu preços a meio da tarde e ficou uma hora à espera. Se quiseres dar
+prioridade à equipa, dá-lha com um atraso — N minutos, e depois o bot entra.
+
 ## 5. Provar que funciona
 
 Corre uma conversa inteira do telemóvel, e depois **olha para a base de dados**:

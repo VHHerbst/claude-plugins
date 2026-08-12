@@ -6,6 +6,48 @@ a regra colar.
 
 ---
 
+## 2026-08-12 — `ops:isolate`, e o dia que o ensinou
+
+Skill nova: **`/ops:isolate`**. Separar o teu código da plataforma e dos dados **antes**
+de abrir um ficheiro. Nasceu de um dia inteiro num CRM em produção onde quase todo o
+tempo perdido foi de diagnóstico, não de correção.
+
+O que aconteceu, por ordem:
+
+Investigou-se uma avaria que não existia. "Não entraram mensagens hoje" foi tomado por
+sintoma, quando ninguém tinha enviado nenhuma. A investigação levou a alterar
+configuração de produção sem motivo — e, como o painel do fornecedor escreve os
+webhooks mas não os deixa ler, **a alteração apagou a única prova** de qual era o
+estado anterior. Daí as duas primeiras secções da skill: confirmar que há avaria, e
+guardar a prova antes de mexer.
+
+Um deploy que escrevia direto no destino apagou um webhook que funcionava: o download
+falhou, o `curl` escreveu a mensagem de erro por cima do ficheiro, e o WhatsApp da
+clínica ficou morto uma manhã. Está agora na regra 7 do `sniper` — descarregar para um
+sítio temporário e mover só em caso de sucesso.
+
+Descobriu-se que oito Edge Functions simplesmente não existiam no servidor, incluindo
+as duas da marcação online. Ninguém se tinha queixado porque **só clientes de fora
+passam por ali** — o silêncio lia-se como normalidade. É a secção "quem dá pela falta".
+
+E duas tentativas falhadas de guardar credenciais ensinaram que **arrancar não é
+funcionar**: uma função pode responder `200` sem uma única credencial carregada, e o
+runtime não dá erro nenhum. A prova tem de passar pela credencial.
+
+Nas skills existentes: o `sniper` deixou de falar só de Lovable na regra 7 — "guardar
+não é publicar" passou a listar o botão de cada plataforma, e ganhou o inverso, que é
+o que está no ar sair do ar sozinho quando vive só na camada de escrita de um
+contentor. Ganhou ainda a entrega de SQL em três partes, os estados "faltam os dados"
+e "falta medir o que se perdeu", e duas regras novas: não trocar um automatismo por
+atenção humana, e desligar uma integração no receptor em vez de assumir que parou.
+
+O `recon` ganhou três eixos de configuração, o `triage` passou a contar o texto que o
+próprio sistema mostra como documentação desalinhada, o `doctrine` ganhou o registo do
+que já se tentou e a produção rejeitou, e o `chatbot:engine` a distinção entre calar
+por handoff e calar por horário.
+
+---
+
 ## 2026-08-06 — catálogo público
 
 Licença de uso escrita: **usar sim, redistribuir não**. Instalar, usar em trabalho

@@ -1,7 +1,7 @@
 {
   "name": "ops",
   "displayName": "V2H Ops",
-  "description": "Operações de engenharia da V2H: reconhecimento antes de avançar, tiro cirúrgico em produção, triagem de dívida técnica e doutrina escrita",
+  "description": "Operações de engenharia da V2H: reconhecimento antes de avançar, isolamento de avarias, tiro cirúrgico em produção, triagem de dívida técnica e doutrina escrita",
   "author": {
     "name": "Vitor Hugo Herbst",
     "email": "vitor@v2h.com.br"

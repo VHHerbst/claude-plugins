@@ -22,6 +22,17 @@ Confirma qual é a versão **mais recente** de uma função: pode haver hardenin
 posterior noutra migração que ainda não viste. A última migração que menciona a
 função ganha — não a primeira que encontraste.
 
+**A base viva manda sobre o repositório.** A linhagem de migrações é uma hipótese
+sobre o schema, não o schema. Antes de escreveres SQL ou código que referencia uma
+coluna, função ou tabela, pergunta à base a correr — uma query custa menos que ler
+três migrações.
+
+**E conta quantas cópias existem da regra que vais corrigir.** Quando o defeito está
+numa regra de negócio — formato de telefone, preço, duração, permissão — procura o
+padrão no repositório inteiro. As Edge Functions não partilham imports com o
+frontend, por isso guardam sempre a sua própria cópia: corriges o ecrã, e o envio do
+servidor continua errado onde ninguém o vê falhar.
+
 ## 2. Migrações não são corridas por ti
 
 Escreves o SQL **idempotente** e entregas. Quem tem acesso corre-o no Supabase
@@ -30,6 +41,15 @@ SQL Editor.
 - Migrações de **enum** ficam num ficheiro isolado e correm **antes** das que as usam.
 - Ficheiros de migração empurrados para o git **não correm sozinhos**. A Lovable
   não os aplica. Se ninguém correu o SQL à mão, a base de dados não mudou.
+
+**SQL que mexe em dados já gravados entrega-se em três partes, por esta ordem:**
+
+1. a query que **conta** quantas linhas apanha;
+2. o `select` que mostra a coluna proposta ao lado da atual;
+3. o `update` — **comentado**, para quem corre descomentar depois de conferir.
+
+Num sistema em uso não há undo. Uma condição mal medida corrige o alvo e estraga o
+que estava ao lado, e ninguém dá por isso até a pessoa errada se queixar.
 
 ## 3. Commits cirúrgicos
 
@@ -53,10 +73,25 @@ máquina e falham lá.
 ## 5. Verificar na ground truth, nunca num sinal intermédio
 
 Um `200 OK` não é prova. `ok: true` não é prova. Testes a passar não são prova.
-`tsc` sem erros não é prova.
+`tsc` sem erros não é prova. **"Está configurado no painel" também não é prova** — há
+plataformas onde o que defines no painel nunca chega ao processo.
+
+**Arrancar não é funcionar.** Um serviço pode responder `200` sem uma única
+credencial. Precisas de um caminho que **use** a credencial e devolva resposta
+observável — senão estás a testar que o ficheiro existe.
 
 **Prova** é: o registo apareceu na tabela, o card mudou de coluna no ecrã, o
 bundle servido em produção contém o código novo. Vai ver no sítio final.
+
+Uma mudança pode ter **mais do que uma ground truth**. Antes de verificares, escreve
+os efeitos que ela devia produzir — a resposta que o utilizador vê, a linha na
+tabela, o estado do registo, a entrada no log — e verifica-os todos. O efeito visível
+é o que menos falha e o que mais engana: houve um bot a responder em quatro segundos
+enquanto o passo seguinte falhava em **todas** as execuções.
+
+Quando a prova só se observa disparando algo para uma pessoa real — mandar uma
+mensagem, criar uma marcação, cobrar — **não testes no cliente**. Procura o caminho
+que passa pelo mesmo código e pela mesma credencial sem tocar em ninguém.
 
 Se não conseguires ver o resultado final, di-lo em vez de assumir.
 
@@ -68,13 +103,31 @@ Se não conseguires ver o resultado final, di-lo em vez de assumir.
 
 Decide a ordem *antes* de entregar, e escreve-a na entrega.
 
-## 7. Código no GitHub não está live
+## 7. Guardar não é publicar — sabe qual é o botão
 
-Nos projetos Lovable, o deploy é o **Publish**. Enquanto ninguém carregar em
-Publish, o que está no GitHub não existe para os utilizadores.
+Push, save e merge não ativam nada. Cada plataforma tem o seu passo de ativação:
+descobre qual é o dela **antes** de dares por feito, e diz na entrega quem o carrega.
 
-Diz isto explicitamente em cada entrega. Nunca deixes ninguém assumir que "está
-no main" significa "está no ar".
+- **Lovable** — o **Publish**. Enquanto ninguém carregar, o que está no GitHub não
+  existe para os utilizadores.
+- **n8n** — **Publicar**. Guardar cria um rascunho e a versão antiga continua a
+  atender. Confirma que a versão ativa é a nova.
+- **Edge Functions self-hosted** — não há deploy automático nenhum. O ficheiro tem de
+  ir parar ao contentor.
+- **Migrações** — alguém corre o SQL à mão. Ver a regra 2.
+
+E o contrário também é verdade: **o que está no ar pode sair do ar sem ninguém tocar
+no código.** Se o que faz o sistema funcionar vive só na camada de escrita de um
+contentor — ficheiros copiados à mão, credenciais escritas com `sed` — basta a
+infraestrutura recriar o serviço para apagar tudo. Isso não é um deploy: é uma
+configuração à espera de desaparecer. Num painel gerido, **"Reiniciar" é seguro,
+"Implantar" recria e apaga.**
+
+Enquanto repões, **nada de escrever direto no destino.** Um `>` ou um `sed -i` sobre
+um ficheiro que está bom destrói-o quando o passo anterior falha — um download
+falhado escreveu a mensagem de erro por cima de um webhook em produção e o canal
+ficou morto uma manhã. Descarrega para um sítio temporário e move só em caso de
+sucesso.
 
 ## 8. Fechar cada bloco com resumo por-pessoa
 
@@ -84,7 +137,19 @@ Quem pediu tem de conseguir ler só a sua linha. Organiza por pessoa
 - **feito e publicado**
 - **feito, falta publicar**
 - **feito, falta correr a migração**
+- **feito no código, falta corrigir os dados já gravados**
 - **em falta** — e porquê
+
+Um defeito que **escreveu dados errados** tem três partes: a causa, os dados que
+ficaram torcidos, e o estrago que já foi feito. Corrigir a causa fecha uma. Dizer
+"corrigido" com as outras duas por tratar é dar por encerrado um incidente que
+continua a correr.
+
+E acrescenta uma linha sempre que a mudança traga um comportamento que, visto de
+fora, é indistinguível de uma avaria. Diz três coisas: **o que vai acontecer, que é
+de propósito, e como se desfaz.** Uma guarda de handoff que cala o bot assim que
+alguém responde está a fazer exatamente o que devia — e para a equipa é "o bot
+morreu".
 
 Sem jargão técnico. A pessoa quer saber se já pode usar.
 
@@ -99,8 +164,11 @@ entrega**:
 - filtros e pesquisas
 - permissões por papel
 - documentação (`AGENTS.md`, `docs/features/`)
+- **quem chama isto** — o ecrã que devia usar a coisa nova já a invoca?
 
-Um estado novo que não aparece nos filtros é um estado que ninguém encontra.
+Um estado novo que não aparece nos filtros é um estado que ninguém encontra. E uma
+função entregue que nenhum ecrã chama não é meia funcionalidade: é zero, com o
+agravante de constar como feita.
 
 ## 10. Não prometas o que não verificaste
 
@@ -110,6 +178,28 @@ não testaste.
 Uma entrega honesta e incompleta custa uma hora. Uma entrega falsamente completa
 custa um dia e a confiança da equipa.
 
+## 11. Não troques um automatismo por atenção humana
+
+Se a mudança faz o sistema deixar de responder porque "a equipa trata disso", tem de
+levar a rede junto: a pessoa tem N minutos de prioridade e, se ninguém pegar, o
+automatismo entra.
+
+**Silêncio incondicional à espera de que alguém esteja a olhar não se publica.** Uma
+guarda que calava um bot durante o horário de expediente durou um dia: um cliente
+pediu preços a meio da tarde e ficou uma hora sem resposta, porque o bot estava
+proibido de falar e ninguém reparou a tempo.
+
+## 12. Desligar também é uma entrega
+
+Parar de usar um fornecedor não o cala. Enquanto a conta e os fluxos existirem do
+outro lado, ele continua a disparar — e esse lado não é teu.
+
+**O desligamento que se aguenta é o do receptor:** o teu webhook responde com uma
+recusa nomeada, não escreve nada, e leva a data no próprio ficheiro. Depois vais
+confirmar na tabela que parou. "Já ninguém usa aquilo" não é desligar — houve uma
+integração dada como substituída que continuou semanas a injetar mensagens antigas
+em conversas de clientes reais.
+
 ---
 
 ## Antes de dizer "está feito", responde a isto
@@ -118,7 +208,9 @@ custa um dia e a confiança da equipa.
 2. O `git add` levou só os meus ficheiros?
 3. O trio verde passou em Node 20?
 4. Vi o resultado no sítio final, ou só num `200 OK`?
-5. Disse claramente o que falta — publicar, migração, ou ambos?
+5. Disse claramente o que falta — publicar, migração, dados por corrigir?
 6. O resumo está por pessoa, em linguagem que ela entende?
+7. Se o defeito escreveu dados errados, disse quantos e o que se perdeu?
+8. Avisei do que vai parecer avaria e não é?
 
 Se alguma resposta for "não", ainda não está feito.

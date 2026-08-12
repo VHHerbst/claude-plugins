@@ -73,7 +73,13 @@ levantado** (adesão ao AGENTS.md, bug, contexto histórico, policy…).
   o vazio, promessa sem `await`, valor por omissão que mascara falha, `ok: true`
   devolvido sem se ter confirmado nada. **Uma falha que ninguém vê é pior que um
   crash.**
-- **#7 — Supabase e base de dados.** Só se a mudança tocar SQL, RPCs, policies ou
+- **#7 — Supabase e base de dados.** Inclui código trazido de outro módulo com os
+  nomes do sítio de origem — tabela ou coluna que lá existia e aqui não. Onde
+  convivem dois vocabulários, o legado e o que o substituiu, o typecheck não apanha:
+  rebenta no primeiro query, em execução. Confirma cada nome contra a base viva, nunca
+  contra o ficheiro de onde copiaste. Inclui também a linha vinda de fora **sem o id
+  de origem** guardado: sem ele não se prova a proveniência de um registo. Só se a
+  mudança tocar SQL, RPCs, policies ou
   queries:
   - migração **idempotente**? enum em ficheiro isolado e a correr **antes** de quem
     o usa?
@@ -85,6 +91,18 @@ levantado** (adesão ao AGENTS.md, bug, contexto histórico, policy…).
   - `user_id` usado onde o correto é cruzar por email (pode estar stale)?
   - a migração está no git mas **ninguém a correu** — o Lovable não aplica.
 - **#8 — Produção e configuração.**
+  - Credencial lida no código **sem via visível de lá chegar**. Definida no painel do
+    fornecedor não é definida no processo: se o diff acrescenta o `Deno.env.get('X')`
+    e não acrescenta nada que ponha o `X` dentro do contentor, é achado — a função
+    arranca, responde, e só não funciona.
+  - **Opção exposta que o código não honra.** Confronta o que a interface deixa
+    escolher com o que o código faz com a escolha. O caso típico é o seletor de
+    fornecedor com o URL escrito fixo no sítio que envia: quem escolhe sai convencido
+    de que mudou alguma coisa, e o serviço fica mudo sem explicar nada.
+  - Edge Function com `verify_jwt = false` é **superfície pública**: o corpo do pedido
+    é a intenção de um estranho, não um facto. Preço, duração, estado e
+    disponibilidade recalculam-se no servidor. Percorre os campos que a função aceita
+    e diz o que um visitante ganhava em falsificar cada um.
   - `throw` em env var ausente que ainda não existe em todos os ambientes de deploy
   - dados fictícios/mock a entrar no bundle, mesmo atrás de flag
   - segredos, chaves ou tokens em código
