@@ -83,15 +83,14 @@ observável — senão estás a testar que o ficheiro existe.
 **Prova** é: o registo apareceu na tabela, o card mudou de coluna no ecrã, o
 bundle servido em produção contém o código novo. Vai ver no sítio final.
 
-Uma mudança pode ter **mais do que uma ground truth**. Antes de verificares, escreve
-os efeitos que ela devia produzir — a resposta que o utilizador vê, a linha na
-tabela, o estado do registo, a entrada no log — e verifica-os todos. O efeito visível
-é o que menos falha e o que mais engana: houve um bot a responder em quatro segundos
-enquanto o passo seguinte falhava em **todas** as execuções.
+Uma mudança tem quase sempre **mais do que uma ground truth**. Escreve os efeitos que
+devia produzir — a resposta que o utilizador vê, a linha na tabela, a entrada no log —
+e verifica-os todos. O efeito visível é o que menos falha e o que mais engana: um bot
+pode responder em quatro segundos com o passo seguinte a falhar em todas as execuções.
 
-Quando a prova só se observa disparando algo para uma pessoa real — mandar uma
-mensagem, criar uma marcação, cobrar — **não testes no cliente**. Procura o caminho
-que passa pelo mesmo código e pela mesma credencial sem tocar em ninguém.
+Quando a prova só se observa disparando algo para uma pessoa real, **não testes no
+cliente**: procura o caminho que passa pelo mesmo código e pela mesma credencial sem
+tocar em ninguém.
 
 Se não conseguires ver o resultado final, di-lo em vez de assumir.
 
@@ -117,17 +116,15 @@ descobre qual é o dela **antes** de dares por feito, e diz na entrega quem o ca
 - **Migrações** — alguém corre o SQL à mão. Ver a regra 2.
 
 E o contrário também é verdade: **o que está no ar pode sair do ar sem ninguém tocar
-no código.** Se o que faz o sistema funcionar vive só na camada de escrita de um
-contentor — ficheiros copiados à mão, credenciais escritas com `sed` — basta a
-infraestrutura recriar o serviço para apagar tudo. Isso não é um deploy: é uma
-configuração à espera de desaparecer. Num painel gerido, **"Reiniciar" é seguro,
-"Implantar" recria e apaga.**
+no código.** O que vive só na camada de escrita de um contentor — ficheiros copiados à
+mão, credenciais escritas com `sed` — não é um deploy, é uma configuração à espera de
+desaparecer: basta a infraestrutura recriar o serviço. Num painel gerido, **"Reiniciar"
+é seguro, "Implantar" recria e apaga.**
 
-Enquanto repões, **nada de escrever direto no destino.** Um `>` ou um `sed -i` sobre
-um ficheiro que está bom destrói-o quando o passo anterior falha — um download
-falhado escreveu a mensagem de erro por cima de um webhook em produção e o canal
-ficou morto uma manhã. Descarrega para um sítio temporário e move só em caso de
-sucesso.
+E **nunca escrevas direto no destino.** Um `>` ou um `sed -i` sobre um ficheiro que
+está bom destrói-o quando o passo anterior falha — basta um download falhado para a
+mensagem de erro ficar por cima de um webhook em produção. Escreve num sítio
+temporário e move só em caso de sucesso.
 
 ## 8. Fechar cada bloco com resumo por-pessoa
 
@@ -140,16 +137,14 @@ Quem pediu tem de conseguir ler só a sua linha. Organiza por pessoa
 - **feito no código, falta corrigir os dados já gravados**
 - **em falta** — e porquê
 
-Um defeito que **escreveu dados errados** tem três partes: a causa, os dados que
-ficaram torcidos, e o estrago que já foi feito. Corrigir a causa fecha uma. Dizer
-"corrigido" com as outras duas por tratar é dar por encerrado um incidente que
-continua a correr.
+Um defeito que **escreveu dados errados** tem três partes: a causa, os dados torcidos
+e o estrago já feito. Corrigir a causa fecha uma — dizer "corrigido" com as outras
+duas por tratar é encerrar um incidente que continua a correr.
 
-E acrescenta uma linha sempre que a mudança traga um comportamento que, visto de
-fora, é indistinguível de uma avaria. Diz três coisas: **o que vai acontecer, que é
-de propósito, e como se desfaz.** Uma guarda de handoff que cala o bot assim que
-alguém responde está a fazer exatamente o que devia — e para a equipa é "o bot
-morreu".
+E acrescenta uma linha sempre que a mudança traga um comportamento que, visto de fora,
+é indistinguível de uma avaria: **o que vai acontecer, que é de propósito, e como se
+desfaz.** Uma guarda que cala o bot assim que um humano responde está a fazer o que
+devia — para a equipa é "o bot morreu".
 
 Sem jargão técnico. A pessoa quer saber se já pode usar.
 
@@ -185,9 +180,8 @@ levar a rede junto: a pessoa tem N minutos de prioridade e, se ninguém pegar, o
 automatismo entra.
 
 **Silêncio incondicional à espera de que alguém esteja a olhar não se publica.** Uma
-guarda que calava um bot durante o horário de expediente durou um dia: um cliente
-pediu preços a meio da tarde e ficou uma hora sem resposta, porque o bot estava
-proibido de falar e ninguém reparou a tempo.
+guarda dessas durou um dia numa clínica: o cliente pediu preços a meio da tarde e
+ficou uma hora sem resposta.
 
 ## 12. Desligar também é uma entrega
 
@@ -195,10 +189,9 @@ Parar de usar um fornecedor não o cala. Enquanto a conta e os fluxos existirem 
 outro lado, ele continua a disparar — e esse lado não é teu.
 
 **O desligamento que se aguenta é o do receptor:** o teu webhook responde com uma
-recusa nomeada, não escreve nada, e leva a data no próprio ficheiro. Depois vais
-confirmar na tabela que parou. "Já ninguém usa aquilo" não é desligar — houve uma
-integração dada como substituída que continuou semanas a injetar mensagens antigas
-em conversas de clientes reais.
+recusa nomeada, não escreve nada, e leva a data no próprio ficheiro. Depois confirmas
+na tabela que parou. "Já ninguém usa aquilo" não é desligar — uma integração dada como
+substituída continuou semanas a injetar mensagens antigas em conversas de clientes.
 
 ---
 
