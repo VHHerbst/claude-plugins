@@ -9,7 +9,7 @@ Trabalhamos em sistemas que a equipa está a usar **neste momento**. Um erro pub
 não é um bug — é uma venda atrasada, uma reunião perdida, um cliente à espera.
 Não temos o luxo de tentar duas vezes.
 
-Aplica as dez regras abaixo, todas, sem exceção.
+Aplica todas as regras abaixo, sem exceção.
 
 ---
 
@@ -193,6 +193,33 @@ recusa nomeada, não escreve nada, e leva a data no próprio ficheiro. Depois co
 na tabela que parou. "Já ninguém usa aquilo" não é desligar — uma integração dada como
 substituída continuou semanas a injetar mensagens antigas em conversas de clientes.
 
+## 13. Escrita bloqueada não dá erro — dá zero linhas
+
+Com RLS, um `update` ou `delete` que **não casa com nenhuma policy** não falha: afeta
+zero linhas. O PostgREST devolve `200`, o `error` vem `null`, e o código que só olha ao
+`error` anuncia sucesso sem ter escrito nada.
+
+É a falha mais cara que há, porque **o utilizador é treinado a desconfiar de si próprio**:
+clica, lê "guardado com sucesso", vê o registo na mesma, e clica outra vez. Um gestor de
+agência cancelou a mesma venda **três vezes** e o sistema concordou as três — o papel dele
+tinha sido acrescentado ao ecrã anos depois da policy ter sido escrita.
+
+Portanto:
+
+- **Transições de estado vão por RPC `SECURITY DEFINER`** que devolve `{ok, erro}`, e o
+  frontend **valida o `ok`** — não o `error`. A recusa passa a ser uma frase que chega ao
+  ecrã em vez de silêncio.
+- Se um `update` direto for mesmo inevitável, encadeia `.select()` e confirma que voltaram
+  linhas. `.single()` também serve: com zero linhas devolve erro.
+- **A permissão que a UI mostra tem de existir na base.** Ao acrescentar um papel a um
+  ecrã, procura a policy ou a guarda da RPC que o cobre. Se não existir, ele vê o botão e
+  a ação não acontece — e ninguém repara enquanto ninguém com esse papel tentar.
+
+O mesmo raciocínio vale para leitura: uma tabela protegida por RLS devolve **lista vazia**,
+não erro. Derivar hierarquia ou permissões no browser a partir de uma tabela que o
+utilizador não pode ler produz um ecrã vazio sem uma única mensagem — resolve no servidor,
+com RPC.
+
 ---
 
 ## Antes de dizer "está feito", responde a isto
@@ -205,5 +232,7 @@ substituída continuou semanas a injetar mensagens antigas em conversas de clien
 6. O resumo está por pessoa, em linguagem que ela entende?
 7. Se o defeito escreveu dados errados, disse quantos e o que se perdeu?
 8. Avisei do que vai parecer avaria e não é?
+9. As escritas confirmam que escreveram — `ok` da RPC ou linhas devolvidas — em vez de confiarem na ausência de erro?
+10. Todo o papel que vê o botão tem policy ou guarda que o deixa agir?
 
 Se alguma resposta for "não", ainda não está feito.

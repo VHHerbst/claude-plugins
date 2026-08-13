@@ -6,6 +6,36 @@ a regra colar.
 
 ---
 
+## 2026-08-13 — a escrita que falha calada, e o utilizador que se culpa
+
+Regra nova no **`ops:sniper`**: *"Escrita bloqueada não dá erro — dá zero linhas."*
+
+Um gestor de agência cancelou a mesma venda **três vezes**. Das três, o sistema
+respondeu "cancelada com sucesso". Das três, a venda ficou onde estava. Ele reportou-o
+como se fosse um mistério — e a partir dali passou a duvidar do que o ecrã lhe dizia
+em todo o resto do módulo.
+
+Não havia bug nenhum no cancelar. O código fazia `update` direto na tabela e verificava
+`error`. Só que, com RLS, um `update` que não casa com nenhuma policy **não é erro**:
+afeta zero linhas, o PostgREST devolve `200`, o `error` vem `null`. O papel dele tinha
+sido acrescentado ao ecrã muito depois de a policy ter sido escrita — a UI dava-lhe o
+botão, a base nunca lho tinha dado.
+
+A varredura ao módulo, feita a seguir, encontrou **mais seis** transições com a mesma
+forma, e uma segunda cara do mesmo problema: hierarquia calculada no browser a partir de
+uma tabela que aquele papel não pode ler. RLS na leitura não dá erro, dá **lista vazia** —
+o filtro de coordenador simplesmente não existia para ele, sem uma única mensagem. Foi
+reportado três vezes antes de alguém perceber porquê.
+
+A lição que ficou na regra: **ausência de erro não é confirmação**. Transições vão por RPC
+que devolve `{ok, erro}` e o frontend valida o `ok`; permissão que a UI mostra tem de
+existir na base; e o que depende de tabelas protegidas resolve-se no servidor.
+
+Entraram também duas perguntas no checklist final — sobre escritas que confirmam que
+escreveram, e sobre papéis que veem botões sem guarda que os deixe agir.
+
+---
+
 ## 2026-08-12 — `ops:isolate`, e o dia que o ensinou
 
 Skill nova: **`/ops:isolate`**. Separar o teu código da plataforma e dos dados **antes**
