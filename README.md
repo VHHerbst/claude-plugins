@@ -76,6 +76,7 @@ bloqueia nada não é dívida, é código feio.
 | `/design:copy` | O texto: botões, erros, estados vazios, confirmações |
 | `/design:accessibility` | Auditoria WCAG feita por tarefa, não por checklist |
 | `/design:handoff` | Passar para o dev sem ele ter de adivinhar |
+| `/design:taste` | Landing pages, portfólios e redesigns que não pareçam template |
 
 **A `critique` separa o dano do gosto.** Três colunas: *bloqueia*, *atrasa* e
 *preferência* — e a última fica marcada como tal, **sem peso nenhum**. É essa
@@ -91,6 +92,12 @@ três sessões independentes.
 já existe cria o sétimo botão do produto. E traz a secção que falta em quase todos —
 *o que acontece quando a lista está vazia, quando o pedido falha a meio, quando a
 pessoa não tem permissão*.
+
+**A `taste` lê o brief antes de tocar em código.** Primeiro declara a leitura — *que
+tipo de página, para que audiência, com que linguagem visual* — e só depois gera. É o
+antídoto para o default de IA: gradiente roxo, herói centrado sobre mesh escuro, três
+cartões iguais. Adaptada de [taste-skill](https://github.com/Leonxlnx/taste-skill)
+(Leonxlnx, MIT), a skill de frontend mais instalada do skills.sh.
 
 ---
 

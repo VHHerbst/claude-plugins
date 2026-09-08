@@ -6,6 +6,23 @@ a regra colar.
 
 ---
 
+## 2026-09-08 — o frontend que parecia sempre feito por IA
+
+Skill nova no **`design`**: **`/design:taste`** — direção visual para landing pages,
+portfólios e redesigns.
+
+Todos os frontends gerados por IA convergiam para a mesma cara: gradiente roxo, herói
+centrado sobre mesh escuro, três cartões de features iguais, Inter + slate-900. Não é
+falta de capacidade — é falta de leitura do brief. O modelo salta para a estética
+default em vez de perguntar *para quem é isto e com que linguagem*.
+
+A skill obriga a ordem certa: primeiro uma "design read" declarada em uma linha (tipo
+de página, audiência, linguagem visual, sistema de design), depois três dials que
+governam tudo (variância de layout, intensidade de motion, densidade visual), e só
+então código. Adaptada de [taste-skill](https://github.com/Leonxlnx/taste-skill) de
+Leonxlnx (MIT, ~457 mil instalações no skills.sh) — o corpo mantém-se em inglês para
+não criar deriva em relação ao original.
+
 ## 2026-08-13 — a escrita que falha calada, e o utilizador que se culpa
 
 Regra nova no **`ops:sniper`**: *"Escrita bloqueada não dá erro — dá zero linhas."*

@@ -26,7 +26,7 @@
     {
       "name": "design",
       "source": "./plugins/design",
-      "description": "Design e UX de web e app: crítica estruturada, handoff para dev, auditoria de acessibilidade, UX copy e síntese de pesquisa com utilizadores",
+      "description": "Design e UX de web e app: crítica estruturada, handoff para dev, auditoria de acessibilidade, UX copy, síntese de pesquisa com utilizadores e direção visual anti-genérico para frontends",
       "category": "workflow",
       "tags": [
         "design",
@@ -34,7 +34,8 @@
         "acessibilidade",
         "wcag",
         "handoff",
-        "ux-copy"
+        "ux-copy",
+        "frontend"
       ],
       "homepage": "https://github.com/VHHerbst/claude-plugins#design--para-quem-desenha"
     },
