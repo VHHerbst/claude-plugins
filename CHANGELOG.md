@@ -6,6 +6,24 @@ a regra colar.
 
 ---
 
+## 2026-09-11 — o site bonito que não vendia
+
+Camada nova na **`design:taste`**: **CAMADA V2H — Benchmark de Venda**, o piso que
+todas as nossas páginas de venda cumprem antes de qualquer decisão de gosto.
+
+A pesquisa que a originou cruzou três rankings de "melhor site de vendas" — e as
+listas quase não se tocam. Os que mais convertem (Allbirds, Brooklinen), os de melhor
+UX medido pelo Baymard (Nike, Zalando) e os premiados pelo Awwwards (Apple, Scout
+Motors) são três populações diferentes; só a Glossier aparece em duas. A tentação de
+copiar o site premiado é exatamente o erro: os premiados raramente convertem.
+
+A camada fixa o que os 19.000+ testes do Baymard confirmaram — proposta de valor acima
+da dobra, copy de benefício, confiança dentro do caminho de compra, LCP < 2,5s,
+checkout ≤ 3 passos com envio visível na página do produto — e a regra de arbitragem:
+**quando gosto e conversão conflituam, conversão ganha**; a ousadia vive no herói, o
+funil fica convencional de propósito. Referências datadas de set/2026, a rever a cada
+~6 meses. Tudo marcado [V2H] para sobreviver a sincronizações com o upstream.
+
 ## 2026-09-08 — o frontend que parecia sempre feito por IA
 
 Skill nova no **`design`**: **`/design:taste`** — direção visual para landing pages,

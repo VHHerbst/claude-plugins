@@ -1,6 +1,6 @@
 ---
 name: taste
-description: Direção visual anti-genérico para frontends — landing pages, portfólios e redesigns que não pareçam template. Lê o brief, infere a direção de design certa (sistema de design, tipografia, layout, motion) e só depois gera código. Usa quando alguém pedir uma landing page, um site de marketing, um portfólio ou um redesign visual, disser que o resultado "parece template" ou "parece feito por IA", ou pedir mais gosto/personalidade num frontend. Não é para dashboards, tabelas de dados nem UI de produto multi-passo.
+description: Direção visual anti-genérico para frontends — landing pages, portfólios, lojas e redesigns que não pareçam template. Lê o brief, infere a direção de design certa (sistema de design, tipografia, layout, motion) e só depois gera código. Em páginas de venda e e-commerce aplica primeiro o benchmark de conversão da casa (camada V2H: piso Baymard + referências DTC). Usa quando alguém pedir uma landing page, um site de marketing, um portfólio, uma loja, uma página de produto ou um redesign visual, disser que o resultado "parece template" ou "parece feito por IA", ou pedir mais gosto/personalidade ou mais conversão num frontend. Não é para dashboards, tabelas de dados nem UI de produto multi-passo.
 ---
 
 # tasteskill: Anti-Slop Frontend Skill
@@ -37,6 +37,12 @@ If you can confidently infer from context, **do not ask**. Just declare the desi
 
 ### 0.D Anti-Default Discipline
 Do not default to: AI-purple gradients, centered hero over dark mesh, three equal feature cards, generic glassmorphism on everything, infinite-loop micro-animations everywhere, Inter + slate-900. These are the LLM defaults. Reach past them deliberately based on the design read.
+
+### 0.E [V2H] Páginas de venda passam primeiro pelo benchmark da casa
+Se a leitura do brief der **loja, e-commerce, página de produto ou landing de venda**,
+aplica a **CAMADA V2H** (secção própria antes dos appendices) ANTES de qualquer decisão
+de gosto: o piso de conversão é inegociável, os dials usam o preset de venda, e as
+referências escolhem-se pela intenção (conversão ≠ prémio de design).
 
 ---
 
@@ -975,8 +981,76 @@ Run this matrix before outputting code. This is the last filter.
 - [ ] **No AI Tells** from Section 9 (Inter as default, AI-purple, three-equal cards, Jane Doe, Acme, "Quietly in use at")?
 - [ ] **Core Web Vitals** plausibly hit (LCP < 2.5s, INP < 200ms, CLS < 0.1)?
 - [ ] **One design system** per project (no Material + shadcn mixed)?
+- [ ] **[V2H]** Página de venda? Pre-flight adicional da CAMADA V2H (secção V2H.4) corrido por inteiro?
 
 If a single checkbox cannot be honestly ticked, the page is not done. Fix it before delivering.
+
+---
+
+# CAMADA V2H — Benchmark de Venda (set/2026)
+
+> Secção da casa — não vem do original de Leonxlnx. É o piso que **todas as nossas
+> páginas de venda** cumprem antes de qualquer decisão de gosto. Referências
+> verificadas em setembro de 2026 (Baymard, Awwwards, listas DTC); rever a cada
+> ~6 meses — a data no título é o lembrete.
+
+## V2H.1 O piso de conversão (inegociável)
+
+Confirmado pelos 19.000+ testes de usabilidade do Baymard Institute. Numa página de
+venda isto vem antes dos dials — **quando gosto e conversão conflituam, conversão
+ganha**. A ousadia criativa aplica-se ao que não toca no caminho de compra.
+
+1. **Proposta de valor acima da dobra** — quem chega percebe em 5 segundos o que é,
+   para quem é e porque comprar aqui.
+2. **Copy orientado a benefício** na página de produto — nunca especificação seca.
+3. **Sinais de confiança dentro do caminho de compra** — reviews, garantia, política
+   de devolução, certificações — visíveis onde a decisão acontece, não escondidos
+   numa página "Sobre" ou no rodapé.
+4. **LCP < 2,5s** — motion e imagem nunca compram estética com velocidade. Se o GSAP
+   custa o LCP, perde o GSAP.
+5. **Checkout em ≤ 3 passos**, com pagamento expresso quando a plataforma o dá, e
+   **custo de envio visível já na página do produto** (padrão Brooklinen — 70%+ de
+   conclusão de checkout).
+6. **A página de produto remove objeções**: close-ups, guia de tamanhos/medidas,
+   materiais e certificações, reviews com foto. Cada objeção sem resposta na página
+   é um carrinho abandonado.
+
+## V2H.2 Dial preset — venda
+
+| Caso | VARIANCE | MOTION | DENSITY |
+|---|---|---|---|
+| Loja / e-commerce (catálogo + produto) | 5-6 | 3-4 | 4-5 |
+| Landing de produto único (DTC) | 6-7 | 5-6 | 3-4 |
+
+A ousadia vive no herói e na narrativa da marca. A partir do momento em que a pessoa
+entra no funil (produto → carrinho → checkout), a interface fica convencional **de
+propósito** — os padrões que o Baymard mediu, não os que ganham prémios.
+
+## V2H.3 Bibliotecas de referência (escolher pela intenção, nunca misturar)
+
+**Conversão medida — copiar o funil:**
+Allbirds (a product page canónica: lifestyle + materiais + fit + reviews escaneáveis),
+Brooklinen (envio na página de produto, checkout expresso), Ridge Wallet, Glossier,
+Gymshark, Warby Parker, Bombas, Casper.
+
+**UX top 1% do Baymard — copiar navegação, filtros, product page e checkout:**
+Nike, Zalando, Chewy, Everlane, Hoka, Mejuri, Away, GoPro, Nordstrom, Glossier.
+(A Glossier é a única presente nas duas listas — referência dupla.)
+
+**Linguagem visual premiada (Awwwards) — copiar a narrativa, NUNCA o checkout:**
+Apple AirPods Pro (narrativa cinemática com sequência de imagens presa ao scroll),
+Scout Motors (herança de marca em full-screen antes do CTA de pré-encomenda).
+Servem de reference signal para a Section 0 quando o brief pede ousadia — mas os
+premiados raramente são os que convertem, e nunca justificam quebrar o V2H.1.
+
+## V2H.4 Pre-flight adicional (páginas de venda)
+
+- [ ] Proposta de valor legível acima da dobra **em mobile**?
+- [ ] Custo de envio (ou "envio grátis") visível na página do produto?
+- [ ] Sinais de confiança no caminho de compra, não só no rodapé?
+- [ ] Checkout ≤ 3 passos, com pagamento expresso quando a plataforma o dá?
+- [ ] Objeções principais respondidas na própria página do produto?
+- [ ] LCP < 2,5s plausível **com** as animações escolhidas?
 
 ---
 
@@ -1214,3 +1288,7 @@ Esta skill é uma adaptação de [taste-skill](https://github.com/Leonxlnx/taste
 Copyright (c) 2026 Leonxlnx. O corpo mantém-se em inglês de propósito: é o
 vocabulário em que os sistemas de design, as referências e as ferramentas citadas
 existem, e traduzir criaria deriva em relação ao original.
+
+Tudo o que está marcado **[V2H]** ou vive na **CAMADA V2H** é acrescento da casa
+(escrito em português exatamente para a fronteira ser visível) e não existe no
+original — ao sincronizar com o upstream, preservam-se essas partes.

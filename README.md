@@ -76,7 +76,7 @@ bloqueia nada não é dívida, é código feio.
 | `/design:copy` | O texto: botões, erros, estados vazios, confirmações |
 | `/design:accessibility` | Auditoria WCAG feita por tarefa, não por checklist |
 | `/design:handoff` | Passar para o dev sem ele ter de adivinhar |
-| `/design:taste` | Landing pages, portfólios e redesigns que não pareçam template |
+| `/design:taste` | Landing pages, lojas e portfólios que não pareçam template — e que vendam |
 
 **A `critique` separa o dano do gosto.** Três colunas: *bloqueia*, *atrasa* e
 *preferência* — e a última fica marcada como tal, **sem peso nenhum**. É essa
@@ -98,6 +98,14 @@ tipo de página, para que audiência, com que linguagem visual* — e só depois
 antídoto para o default de IA: gradiente roxo, herói centrado sobre mesh escuro, três
 cartões iguais. Adaptada de [taste-skill](https://github.com/Leonxlnx/taste-skill)
 (Leonxlnx, MIT), a skill de frontend mais instalada do skills.sh.
+
+**Em páginas de venda, a `taste` muda de juiz.** A camada V2H fixa o piso de conversão
+que os 19.000+ testes do Baymard confirmaram — proposta de valor acima da dobra, envio
+visível na página do produto, checkout em ≤ 3 passos, LCP < 2,5s — e a regra de
+arbitragem: *quando gosto e conversão conflituam, conversão ganha*. As referências
+estão separadas pela intenção: quem converte (Allbirds, Brooklinen), quem tem o melhor
+UX medido (Nike, Zalando, Glossier) e quem ganha prémios (Apple, Scout Motors) — e a
+skill sabe que a terceira lista nunca justifica quebrar as duas primeiras.
 
 ---
 
