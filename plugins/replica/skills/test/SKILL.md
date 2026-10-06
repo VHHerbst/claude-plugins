@@ -1,16 +1,15 @@
 ---
-name: replica-test
+name: test
 description: >-
-  Clicks through every flow of an app clone and tests it for bugs: a test plan
-  generated from the recon flows with happy paths and edge cases, Playwright
-  end-to-end tests where possible, a browser click-through where not, and bug
-  reports in a fixed format with severity, steps and evidence. Use when the
-  user says "test my clone", "find bugs", "QA this", "click through
-  everything", "write e2e tests", "does it work", or after /replica-build or
-  /replica-backend.
+  Testa o clone fluxo a fluxo: plano de testes gerado a partir dos fluxos do
+  mapa, com caminho feliz e casos-limite, testes end-to-end em Playwright onde
+  der, passagem manual onde não der, e bugs num formato fixo com severidade,
+  passos e evidência. Usa depois da /replica:build ou da /replica:backend, ou
+  quando alguém num projeto com pasta replica/ pedir para testar o clone ou
+  procurar bugs nele. Testa só o clone, nunca os servidores do original.
 ---
 
-# replica-test
+# replica:test
 
 Reads the flows in `replica/recon.md`. Writes `replica/test-plan.md`,
 `replica/bugs.md`, and end-to-end tests in the project (`e2e/`). Templates in
@@ -84,4 +83,14 @@ it pass, keep the test. Re-run the whole suite after each batch. Update
 
 `test-plan.md`, the specs, `bugs.md`, and a summary: cases run, passed,
 failed, bugs by severity, fixed so far. Ship nothing with an open S1. Next:
-`/replica-diff`.
+`/replica:diff`.
+
+---
+
+## Origem e licença
+
+Adaptada de [replica-skill](https://github.com/Jakeschincariol/replica-skill), de
+Jake Schincariol, sob licença MIT (ver `LICENSE` na raiz deste plugin), a partir do
+commit `77c9436`, auditado a 06/10/2026. O corpo fica em inglês para não criar deriva
+em relação ao original. O que está marcado **[V2H]** é acrescento da casa e preserva-se
+ao sincronizar com o upstream. Procedimento em `UPSTREAM.md`, na raiz do plugin.

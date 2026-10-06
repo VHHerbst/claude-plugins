@@ -1,16 +1,22 @@
 ---
-name: replica-diff
+name: diff
 description: >-
-  Compares an app clone against the original: a feature parity score from the
-  feature matrix (weighted by must, should, could) with the missing list in
-  build order, plus a screenshot layout diff that ignores colour so a rebrand
-  does not count against you. Two standard-library Python tools. Use when the
-  user says "how close is my clone", "compare it to the original", "what's
-  missing", "parity check", "diff the screens", "is it ready", or after
-  /replica-test.
+  Compara o clone com o original: pontuação de paridade a partir da matriz de
+  funcionalidades (pesada por must, should e could) com o que falta por ordem
+  de construção, mais um diff de layout entre capturas que ignora a cor para o
+  rebrand não contar contra. Usa depois da /replica:test, ou quando alguém num
+  projeto com pasta replica/ perguntar quão perto o clone está do original, o
+  que falta, ou se já está pronto.
 ---
 
-# replica-diff
+# replica:diff
+
+> **[V2H] Onde estão as ferramentas.** Os scripts desta skill vivem na pasta dela
+> (o *Base directory* que o Claude Code mostra ao carregá-la), não no projeto. Nos
+> comandos abaixo, `python3 <script>.py` quer dizer `python3 <SKILL_DIR>/<script>.py`,
+> com `<SKILL_DIR>` trocado por esse caminho absoluto. As ferramentas das outras skills
+> do plugin estão nas pastas irmãs (`<SKILL_DIR>/../diff/parity.py`). Os comandos correm
+> na raiz do projeto, por isso os caminhos `replica/...` ficam como estão.
 
 Two tools in this folder, both standard-library Python, no installs:
 
@@ -27,7 +33,7 @@ python3 parity.py replica/features.csv --visual replica/diffs/*.json --markdown 
 feature score is the number that matters: can a user do everything they could
 do in the original. The layout score checks structure (is the information in
 the same places, in the same hierarchy), because that is what makes a switcher
-feel at home. It deliberately ignores colour, because replica-brand changes
+feel at home. It deliberately ignores colour, because replica:brand changes
 every colour on purpose. Do not chase pixel parity with the original. Its
 exact look is its trade dress, and it changes before launch.
 
@@ -82,12 +88,22 @@ missing features in build order, behaviour differences, and a verdict:
 - **not shippable**: any must-have missing, or any open S1 bug
 - **shippable**: all must-haves done, feature score 80+, no open S1 or S2
 - **better than the original**: shippable, plus fixes from
-  replica-entrepreneur. This is the goal. A straight copy has no reason to exist.
+  replica:entrepreneur. This is the goal. A straight copy has no reason to exist.
 
 Give honest numbers. A clone at 62% is at 62%.
 
 ## Output
 
 `replica/parity.md`, the diff images, and the top five things to build next.
-Then `/replica-build` for the gaps, or `/replica-entrepreneur` if parity is
+Then `/replica:build` for the gaps, or `/replica:entrepreneur` if parity is
 there.
+
+---
+
+## Origem e licença
+
+Adaptada de [replica-skill](https://github.com/Jakeschincariol/replica-skill), de
+Jake Schincariol, sob licença MIT (ver `LICENSE` na raiz deste plugin), a partir do
+commit `77c9436`, auditado a 06/10/2026. O corpo fica em inglês para não criar deriva
+em relação ao original. O que está marcado **[V2H]** é acrescento da casa e preserva-se
+ao sincronizar com o upstream. Procedimento em `UPSTREAM.md`, na raiz do plugin.

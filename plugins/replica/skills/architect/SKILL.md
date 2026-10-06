@@ -1,21 +1,20 @@
 ---
-name: replica-architect
+name: architect
 description: >-
-  Plans the stack, database schema and API for an app clone, from the recon
-  map replica-recon wrote. Picks boring, managed tech, turns the inferred data
-  model into real SQL with indexes and access rules, lists every route by
-  flow, and orders the build as a thin vertical slice first. Use when the user
-  says "plan the clone", "what stack should I use", "design the database",
-  "write the schema", "plan the API", "architecture for my version of X", or
-  after /replica-recon finishes.
+  Planeia a stack, o schema da base de dados e a API de um clone, a partir do
+  mapa que a /replica:recon escreveu em replica/recon.md: tecnologia gerida e
+  aborrecida, SQL com índices e regras de acesso, rotas por fluxo e ordem de
+  construção em fatia vertical. Usa depois da /replica:recon, ou quando alguém
+  num projeto com pasta replica/ pedir a stack, o schema ou a arquitetura do
+  clone.
 ---
 
-# replica-architect
+# replica:architect
 
 Reads `replica/recon.md` and `replica/features.csv`. Writes
 `replica/architecture.md` (template: architecture.md in this folder).
 
-If there is no recon map, stop and run `/replica-recon` first. Planning a
+If there is no recon map, stop and run `/replica:recon` first. Planning a
 clone from memory of what an app does is how you miss half of it.
 
 ## Step 1: the stack
@@ -26,7 +25,7 @@ because every part is managed, documented and cheap at zero users:
 | layer | default | swap for |
 | --- | --- | --- |
 | web app | Next.js (App Router) + TypeScript | Remix, SvelteKit, Rails |
-| styling | Tailwind, tokens from replica-design | CSS modules |
+| styling | Tailwind, tokens from replica:design | CSS modules |
 | mobile | Expo (React Native) | SwiftUI, Kotlin |
 | database | Postgres on Supabase or Neon | PlanetScale, SQLite (Turso) |
 | ORM | Drizzle or Prisma | raw SQL |
@@ -104,7 +103,7 @@ search, realtime, offline, email deliverability, multi-tenancy, GDPR deletion.
    thing, see the result. Proves the stack.
 2. **Must-haves** from `features.csv`, by area.
 3. **Should-haves**, then could-haves.
-4. **The fixes** replica-entrepreneur finds, once it has run.
+4. **The fixes** replica:entrepreneur finds, once it has run.
 
 Each milestone lists its screens (S-IDs), tables and routes.
 
@@ -112,4 +111,14 @@ Each milestone lists its screens (S-IDs), tables and routes.
 
 `replica/architecture.md`, the SQL in `replica/schema.sql` or as the first
 migration, and a summary: stack in one line, table count, route count, the
-three riskiest parts, and the next step: `/replica-design`.
+three riskiest parts, and the next step: `/replica:design`.
+
+---
+
+## Origem e licença
+
+Adaptada de [replica-skill](https://github.com/Jakeschincariol/replica-skill), de
+Jake Schincariol, sob licença MIT (ver `LICENSE` na raiz deste plugin), a partir do
+commit `77c9436`, auditado a 06/10/2026. O corpo fica em inglês para não criar deriva
+em relação ao original. O que está marcado **[V2H]** é acrescento da casa e preserva-se
+ao sincronizar com o upstream. Procedimento em `UPSTREAM.md`, na raiz do plugin.

@@ -1,16 +1,24 @@
 ---
-name: replica-design
+name: design
 description: >-
-  Rebuilds an app's design system for a clone: colour roles, type scale,
-  spacing, radius, shadows and every component with its states, as design
-  tokens plus component specs, with original assets instead of the target's
-  logos, icons, illustrations or licensed fonts. Includes a WCAG contrast
-  checker. Use when the user says "match the design", "rebuild the design
-  system", "get the colours and fonts", "make it look like X", "design tokens
-  for my clone", or after /replica-architect.
+  Reconstrói o sistema de design de um clone: papéis de cor, escala
+  tipográfica, espaçamento, raios, sombras e cada componente com os seus
+  estados, em tokens e especificações, com assets próprios em vez dos logos,
+  ícones, ilustrações ou fontes licenciadas do original. Inclui verificador de
+  contraste WCAG. Usa depois da /replica:architect, ou quando alguém num
+  projeto com pasta replica/ pedir os tokens, as cores ou as fontes do clone.
+  Para direção visual de sites que não são clones, a skill certa é a
+  design:taste.
 ---
 
-# replica-design
+# replica:design
+
+> **[V2H] Onde estão as ferramentas.** Os scripts desta skill vivem na pasta dela
+> (o *Base directory* que o Claude Code mostra ao carregá-la), não no projeto. Nos
+> comandos abaixo, `python3 <script>.py` quer dizer `python3 <SKILL_DIR>/<script>.py`,
+> com `<SKILL_DIR>` trocado por esse caminho absoluto. As ferramentas das outras skills
+> do plugin estão nas pastas irmãs (`<SKILL_DIR>/../diff/parity.py`). Os comandos correm
+> na raiz do projeto, por isso os caminhos `replica/...` ficam como estão.
 
 Reads `replica/recon.md` and the screenshots in `replica/screens/`. Writes
 `replica/design/tokens.json` (template in this folder), `tokens.css`, the
@@ -33,7 +41,7 @@ What you never take:
   an open one with the same job: Inter, Geist, IBM Plex, Manrope, Source Serif.
 - **Their copy.** Every label and empty state gets written fresh.
 - **Their brand colour.** Record it as a role (`accent`), use a neutral
-  placeholder now, and replica-brand gives you your own. The signature colour
+  placeholder now, and replica:brand gives you your own. The signature colour
   plus the signature layout is trade dress, and it changes before launch.
 
 ## Step 1: measure, do not guess
@@ -52,7 +60,7 @@ From the screenshots (zoom in, use a colour picker on the user's machine):
 
 ## Step 2: write the tokens
 
-Fill `tokens.json`. Keep the role names. replica-brand only changes values.
+Fill `tokens.json`. Keep the role names. replica:brand only changes values.
 Generate `tokens.css` as custom properties and map them into Tailwind's theme
 so components use `bg-surface text-muted`, never raw hex.
 
@@ -96,4 +104,14 @@ check.
 
 `tokens.json`, `tokens.css`, the Tailwind config, `components.md`, the
 primitives built, and a contrast report with zero AA failures. Next:
-`/replica-build`.
+`/replica:build`.
+
+---
+
+## Origem e licença
+
+Adaptada de [replica-skill](https://github.com/Jakeschincariol/replica-skill), de
+Jake Schincariol, sob licença MIT (ver `LICENSE` na raiz deste plugin), a partir do
+commit `77c9436`, auditado a 06/10/2026. O corpo fica em inglês para não criar deriva
+em relação ao original. O que está marcado **[V2H]** é acrescento da casa e preserva-se
+ao sincronizar com o upstream. Procedimento em `UPSTREAM.md`, na raiz do plugin.

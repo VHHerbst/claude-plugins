@@ -35,6 +35,9 @@ import sys
 import zlib
 
 SIG = b"\x89PNG\r\n\x1a\n"
+# [V2H] Teto de tamanho: o PNG inteiro vira tuplos Python, e acima disto a
+# memória rebenta antes de haver resultado. Também trava PNGs-bomba.
+MAX_PIXELS = 60000000
 
 
 class PngError(Exception):
@@ -149,7 +152,16 @@ def read_png(path):
     bits = depth * channels
     bpp = max(1, bits // 8)
     stride = (width * bits + 7) // 8
-    raw = zlib.decompress(b"".join(idat))
+    # [V2H] Descompressão limitada ao que o IHDR declara. Um IDAT que descomprime
+    # para mais do que isso (zip bomb) é recusado sem esgotar a memória.
+    if width * height > MAX_PIXELS:
+        raise PngError("%s is %dx%d, over the %d megapixel limit. Crop it or take "
+                       "the screenshot at a smaller size" % (path, width, height,
+                                                          MAX_PIXELS // 1000000))
+    expected = height * (stride + 1)
+    raw = zlib.decompressobj().decompress(b"".join(idat), expected + 1)
+    if len(raw) > expected:
+        raise PngError("%s holds more image data than its size declares" % path)
     lines = _unfilter(raw, height, stride, bpp)
 
     scale = 255 // ((1 << depth) - 1) if depth < 8 else 1

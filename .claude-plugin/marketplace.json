@@ -52,6 +52,20 @@
         "supabase"
       ],
       "homepage": "https://github.com/VHHerbst/claude-plugins#chatbot--construir-a-tua-própria-plataforma-de-conversas"
+    },
+    {
+      "name": "replica",
+      "source": "./plugins/replica",
+      "description": "Construção guiada de um clone de um app, do reconhecimento ao deploy: reconstrói o que o app faz (nunca o que é dele), corrige o que os utilizadores do original detestam e lança com marca própria",
+      "category": "workflow",
+      "tags": [
+        "clone",
+        "saas",
+        "engenharia-reversa",
+        "produto",
+        "lancamento"
+      ],
+      "homepage": "https://github.com/VHHerbst/claude-plugins#replica--clonar-um-app-e-torná-lo-teu"
     }
   ]
 }
