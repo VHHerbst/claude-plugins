@@ -44,6 +44,13 @@ LICENÇA DE USO — Plugins V2H para Claude Code
 
    A autorização da secção 1 termina automaticamente para quem violar a secção 2.
 
+5. CONTEÚDO DE TERCEIROS
+
+   O conteúdo adaptado de projetos publicados sob licença MIT continua sob essa
+   licença, e esta não o restringe: o plugin replica (ver plugins/replica/LICENSE,
+   Jake Schincariol) e a base da skill design:taste (Leonxlnx). Os acrescentos
+   marcados [V2H] nesses ficheiros seguem esta licença.
+
 ---
 
 USE LICENSE (English summary — the Portuguese text above prevails)

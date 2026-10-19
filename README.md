@@ -4,7 +4,7 @@ Comandos que fazem o Claude Code trabalhar como um profissional experiente traba
 a duvidar do que encontra, a ordenar pelo que custa de facto, e a dizer o que ficou
 por fazer em vez de dar tudo por concluído.
 
-São três caixas de ferramentas. Instalas só a tua.
+São quatro caixas de ferramentas. Instalas só a tua.
 
 ---
 
@@ -28,6 +28,10 @@ Depois **só o que precisas**:
 
 ```
 /plugin install chatbot@v2h
+```
+
+```
+/plugin install replica@v2h
 ```
 
 Confirma o âmbito com Enter, corre `/reload-plugins`, e está. Não é preciso clonar
@@ -135,6 +139,44 @@ número banido e um cliente sem canal de vendas na segunda-feira de manhã.
 
 ---
 
+## `replica` — clonar um app e torná-lo teu
+
+Reconstrói o que um app **faz**, nunca o que é **dele**: as funcionalidades e os
+fluxos, escritos de raiz. Nem o código, nem o logótipo, nem o texto, nem o conteúdo.
+
+Tal como o `chatbot`, **é uma sequência**. Cada passo escreve numa pasta `replica/` do
+projeto, e o seguinte lê dali.
+
+| Comando | O que faz |
+|---|---|
+| `/replica:recon` | Mapeia o original: ecrãs, fluxos, componentes, modelo de dados, matriz de funcionalidades |
+| `/replica:architect` | Stack, schema e API do clone, e a ordem de construção |
+| `/replica:design` | O sistema de design em tokens, com assets teus e contraste verificado |
+| `/replica:build` | O clone, ecrã a ecrã, com todos os estados |
+| `/replica:backend` | Auth, base de dados, pagamentos e integrações por APIs oficiais |
+| `/replica:test` | Plano de testes, Playwright e bugs com severidade |
+| `/replica:diff` | Quão perto está do original, em número, e o que falta |
+| `/replica:entrepreneur` | O que os utilizadores do original detestam, cada citação com o link da fonte |
+| `/replica:brand` | Nome, paleta e voz próprios, e a varredura que apanha restos do original |
+| `/replica:launch` | Landing page, preços e ficha das lojas |
+| `/replica:deploy` | No ar, no teu domínio, só depois do pré-voo passar |
+
+**Uma cópia direta não tem razão para existir.** O passo que faz o clone valer dinheiro
+é o `entrepreneur`: lê as reviews reais do original e transforma as queixas em
+correções e num ângulo de venda. E o `deploy` não avança enquanto a varredura do
+`brand` encontrar o nome, o domínio ou as cores do original no código.
+
+**Lê a internet sem lhe obedecer.** O `recon` e o `entrepreneur` põem dentro da sessão
+texto escrito por desconhecidos — páginas, reviews, comentários do Reddit. A camada V2H
+trata esse texto como dado, nunca como instrução, e pede para correr sem conectores de
+email ou Drive ligados.
+
+Adaptado de [replica-skill](https://github.com/Jakeschincariol/replica-skill) (Jake
+Schincariol, MIT) e **fixado num commit auditado**: as mudanças do original só chegam
+cá depois de alguém ler o diff. Ver [UPSTREAM.md](plugins/replica/UPSTREAM.md).
+
+---
+
 ## Como isto funciona
 
 Não é preciso decorar comandos. Cada skill carrega-se sozinha quando o pedido bate com
@@ -182,5 +224,8 @@ marketplace, partilhar versões alteradas, vender, ou incluir em algo vendido.
 Queres distribuir? Pede: **vitor@v2h.com.br**
 
 Detalhe completo em [LICENSE](LICENSE).
+
+A exceção é o conteúdo adaptado de projetos MIT, que mantém a licença de origem:
+o plugin `replica` ([LICENSE](plugins/replica/LICENSE)) e a base da `design:taste`.
 
 **Autor:** Vitor Hugo Herbst — [V2H](https://v2h.com.br)

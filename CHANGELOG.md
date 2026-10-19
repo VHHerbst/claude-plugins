@@ -6,6 +6,27 @@ a regra colar.
 
 ---
 
+## 2026-10-06 — o link que chegava por DM
+
+Plugin novo: **`replica`** — construção guiada de um clone de um app, em onze passos,
+do `/replica:recon` ao `/replica:deploy`.
+
+Chegou como chegam muitos: um reel a mandar copiar um link do GitHub e colá-lo no
+Claude Code com "instala essa skill". O código estava limpo — Python só com a
+biblioteca padrão, sem rede, sem hooks — mas a forma de instalar não: o repo tinha três
+dias, um commit e 575 estrelas, e "instala daqui" instala o que lá estiver *no dia*,
+não o que foi lido. Por isso entra no catálogo **fixado no commit auditado**
+(`77c9436`), e qualquer sincronização passa primeiro pela leitura do diff inteiro
+(`plugins/replica/UPSTREAM.md`).
+
+Acrescentos [V2H]: o texto lido na internet (páginas, reviews, Reddit) é dado, nunca
+instrução, e o `recon` e o `entrepreneur` correm sem conectores de email, Drive ou
+Slack; as descrições ficaram presas a clones (as originais disparavam em "how does X
+work", em qualquer projeto); os scripts chamam-se pela pasta da skill; o `imgdiff.py`
+ganhou teto contra PNGs-bomba. Adaptado de
+[replica-skill](https://github.com/Jakeschincariol/replica-skill), de Jake
+Schincariol (MIT).
+
 ## 2026-09-11 — o site bonito que não vendia
 
 Camada nova na **`design:taste`**: **CAMADA V2H — Benchmark de Venda**, o piso que
